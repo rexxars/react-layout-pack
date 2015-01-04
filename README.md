@@ -1,21 +1,21 @@
-# react-pack-layout
+# react-layout-pack
 React component for "packing" elements together in a pinterest-like layout.
 
 ## Demos
-See [the demo page](http://rexxars.github.io/react-pack-layout/).
+See [the demo page](http://rexxars.github.io/react-layout-pack/).
 
 ## Installation
-`react-pack-layout` can be installed using [npm](https://npmjs.org/):
+`react-layout-pack` can be installed using [npm](https://npmjs.org/):
 
 ```
-npm install react-pack-layout
+npm install react-layout-pack
 ```
 
 ## Basic usage
 
 ```javascript
 var React = require('react');
-var PackLayout = React.createFactory(require('react-pack-layout'));
+var PackLayout = React.createFactory(require('react-layout-pack'));
 
 // Render the component
 React.render(

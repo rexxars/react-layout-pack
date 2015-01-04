@@ -1,7 +1,7 @@
 'use strict';
 
 var React = window.React || require('react');
-var packLayout = React.createFactory(window.reactPackLayout || require('react-pack-layout'));
+var packLayout = React.createFactory(window.reactPackLayout || require('react-layout-pack'));
 var isWindowLarge = function() { return window.innerWidth > 750; };
 var wasWindowLarge = isWindowLarge();
 
@@ -39,7 +39,7 @@ function getLayout() {
         React.DOM.li(
             null,
             React.DOM.h3(null, 'License'),
-            React.DOM.p(null, 'react-pack-layout is MIT-licensed')
+            React.DOM.p(null, 'react-layout-pack is MIT-licensed')
         ),
 
         imgLi('coast.jpg', 252),

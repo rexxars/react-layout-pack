@@ -1,11 +1,11 @@
 {
-  "name": "react-pack-layout",
+  "name": "react-layout-pack",
   "version": "0.1.0",
   "description": "React component for \"packing\" elements together in a pinterest-like layout",
   "main": "pack-layout.js",
   "repository": {
     "type": "git",
-    "url": "git@github.com:rexxars/react-pack-layout.git"
+    "url": "git@github.com:rexxars/react-layout-pack.git"
   },
   "keywords": [
     "react",
@@ -18,9 +18,9 @@
   "author": "Espen Hovlandsdal <espen@hovlandsdal.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/rexxars/react-pack-layout/issues"
+    "url": "https://github.com/rexxars/react-layout-pack/issues"
   },
-  "homepage": "https://github.com/rexxars/react-pack-layout",
+  "homepage": "https://github.com/rexxars/react-layout-pack",
   "devDependencies": {
     "react": "^0.12.0"
   }
