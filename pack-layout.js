@@ -37,7 +37,7 @@
 
         getColumnArray: function() {
             var layoutWidth = this.el.offsetWidth;
-            var columnWidth = this.props.columnWidth || this.getChildWidth();
+            var columnWidth = this.getColumnWidth();
             var columnCount = Math.floor(layoutWidth / (columnWidth + this.props.itemMargin));
             var columns = [];
 
@@ -49,9 +49,10 @@
         },
 
         reposition: function() {
-            var columns = this.getColumnArray(),
+            var columns  = this.getColumnArray(),
                 children = this.el.childNodes,
-                margin = this.props.itemMargin;
+                margin   = this.props.itemMargin,
+                colWidth = this.getColumnWidth();
 
             for (var i = 0; i < children.length; i++) {
                 var min = +Infinity, minIndex = 0;
@@ -62,7 +63,7 @@
                     }
                 }
 
-                var leftPos = margin + (minIndex * (340 + margin * 2));
+                var leftPos = margin + (minIndex * (colWidth + margin * 2));
                 children[i].style.left = leftPos + 'px';
                 children[i].style.top = min + 'px';
 
@@ -70,8 +71,8 @@
             }
         },
 
-        getChildWidth: function() {
-            return this.el.childNodes[0].offsetWidth;
+        getColumnWidth: function() {
+            return this.props.columnWidth || this.el.childNodes[0].offsetWidth;
         },
 
         componentDidMount: function() {

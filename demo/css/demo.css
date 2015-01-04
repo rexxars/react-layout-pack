@@ -33,12 +33,6 @@ h1 {
     display: block;
 }
 
-@media (max-width: 480px) {
-    .fork-ribbon {
-        display: none;
-    }
-}
-
 .pack-layout {
     margin: 0;
     padding: 0;
@@ -49,5 +43,14 @@ h1 {
 .pack-layout li {
     width: 340px;
     position: absolute;
-    afloat: left;
+}
+
+@media (max-width: 750px) {
+    .fork-ribbon {
+        display: none;
+    }
+
+    #demo li {
+        width: 150px;
+    }
 }
