@@ -86,6 +86,10 @@
             this.reposition();
         },
 
+        componentDidUpdate: function() {
+            this.reposition();
+        },
+
         componentWillUnmount: function() {
             if (this.props.repositionOnResize) {
                 window.removeEventListener('resize', this.onWindowResize, false);
