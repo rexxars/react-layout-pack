@@ -8,7 +8,8 @@
     "test": "eslint .",
     "build": "npm run build:umd && npm run build:prod",
     "build:umd": "webpack src/layout-pack.js umd/layout-pack.js",
-    "build:prod": "NODE_ENV=production webpack -p src/layout-pack.js umd/layout-pack.min.js"
+    "build:prod": "NODE_ENV=production webpack -p src/layout-pack.js umd/layout-pack.min.js",
+    "prepublish": "npm run build && npm run test"
   },
   "repository": {
     "type": "git",
