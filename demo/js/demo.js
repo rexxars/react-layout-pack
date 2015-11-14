@@ -1,8 +1,13 @@
 'use strict';
 
+var require = typeof require === 'undefined' ? function() {} : require;
+
 var React = window.React || require('react');
-var packLayout = React.createFactory(window.reactPackLayout || require('react-layout-pack'));
-var isWindowLarge = function() { return window.innerWidth > 750; };
+var ReactDom = window.ReactDOM || require('react-dom') || React;
+var packLayout = React.createFactory(window.reactLayoutPack || require('react-layout-pack'));
+var isWindowLarge = function() {
+    return window.innerWidth > 750;
+};
 var wasWindowLarge = isWindowLarge();
 
 var imgLi = function(src, height) {
@@ -22,7 +27,7 @@ window.addEventListener('resize', function() {
 }, 250);
 
 function renderDemo() {
-    React.render(getLayout(), document.getElementById('demo'));
+    ReactDom.render(getLayout(), document.getElementById('demo'));
 }
 
 function getLayout() {
@@ -55,7 +60,16 @@ function getLayout() {
         React.DOM.li(
             null,
             React.DOM.h3(null, 'Works with text, too - see?'),
-            React.DOM.p(null, 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus.')
+            React.DOM.p(null,
+                'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. ' +
+                'Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. ' +
+                'Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis ' +
+                'enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ' +
+                'ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer ' +
+                'tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. ' +
+                'Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, ' +
+                'dapibus in, viverra quis, feugiat a, tellus.'
+            )
         ),
 
         imgLi('alexandria.jpg', 255),

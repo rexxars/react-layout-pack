@@ -2,7 +2,14 @@
   "name": "react-layout-pack",
   "version": "0.1.0",
   "description": "React component for \"packing\" elements together in a pinterest-like layout",
-  "main": "pack-layout.js",
+  "main": "src/layout-pack.js",
+  "browser": "umd/layout-pack.js",
+  "scripts": {
+    "test": "eslint .",
+    "build": "npm run build:umd && npm run build:prod",
+    "build:umd": "webpack src/layout-pack.js umd/layout-pack.js",
+    "build:prod": "NODE_ENV=production webpack -p src/layout-pack.js umd/layout-pack.min.js"
+  },
   "repository": {
     "type": "git",
     "url": "git@github.com:rexxars/react-layout-pack.git"
@@ -21,7 +28,12 @@
     "url": "https://github.com/rexxars/react-layout-pack/issues"
   },
   "homepage": "https://github.com/rexxars/react-layout-pack",
+  "peerDependencies": {
+    "react": ">= 0.12.0"
+  },
   "devDependencies": {
-    "react": "^0.12.0"
+    "eslint": "^1.9.0",
+    "eslint-config-vaffel": "^3.0.0",
+    "webpack": "^1.12.6"
   }
 }
