@@ -1,6 +1,6 @@
 {
   "name": "react-layout-pack",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "React component for \"packing\" elements together in a pinterest-like layout",
   "main": "src/layout-pack.js",
   "browser": "umd/layout-pack.js",
