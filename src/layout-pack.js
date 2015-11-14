@@ -65,7 +65,13 @@ var PackLayout = React.createClass({
     },
 
     componentDidMount: function() {
-        this.el = this.getDOMNode();
+        this.el = this.refs.container;
+
+        // Old versions of React doesn't return the raw DOM node
+        if (!(this.el instanceof window.Node)) {
+            this.el = this.el.getDOMNode();
+        }
+
         this.onWindowResize = throttle(this.reposition, this.props.resizeThrottleTimeout, this);
 
         if (this.props.repositionOnResize) {
@@ -88,6 +94,7 @@ var PackLayout = React.createClass({
     render: function() {
         var root = React.DOM[this.props.tag];
         var props = {
+            ref: 'container',
             className: this.props.className
         };
 

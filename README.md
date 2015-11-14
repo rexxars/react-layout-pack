@@ -53,6 +53,7 @@ Properties:
 
 ## Important notes
 
+* This is a component in early development, and probably should not be used in production yet. The API will change in the future.
 * Child elements that changes size after render won't work as expected. The component needs access to the height of each element to properly align elements. Images without a defined size will for instance break.
 * It does not do things in "the react way" - styles are set explicitly on child elements through the browsers DOM API, which is bad.
 
