@@ -15,22 +15,11 @@ npm install react-layout-pack
 
 ```javascript
 var React = require('react');
-var PackLayout = React.createFactory(require('react-layout-pack'));
+var ReactDom = require('react-dom');
+var PackLayout = require('react-layout-pack');
 
 // Render the component
-React.render(
-    PackLayout(
-        { tag: 'ul', className: 'packed-layout' },
-        React.DOM.li(null, 'One element'),
-        React.DOM.li(null, 'Another element'),
-        React.DOM.li(null, 'A third element'),
-        React.DOM.li(null, 'A fourth element'),
-        React.DOM.li(null, 'A fifth element')
-    )
-), document.body);
-
-// Or, with JSX:
-React.render(
+ReactDom.render(
     <PackLayout tag="ul" className="packed-layout">
         <li>One element</li>
         <li>Another element</li>
@@ -38,7 +27,7 @@ React.render(
         <li>A fourth element</li>
         <li>A fifth element</li>
     </PackLayout>,
-    document.body
+    document.getElementById('some-root-node')
 );
 ```
 
@@ -64,7 +53,6 @@ Properties:
 
 ## Important notes
 
-* This is a component in early development, and probably should not be used in production yet. The API *will* change in the future.
 * Child elements that changes size after render won't work as expected. The component needs access to the height of each element to properly align elements. Images without a defined size will for instance break.
 * It does not do things in "the react way" - styles are set explicitly on child elements through the browsers DOM API, which is bad.
 
