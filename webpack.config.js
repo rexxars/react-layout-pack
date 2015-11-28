@@ -8,7 +8,12 @@ module.exports = {
         libraryTarget: 'umd'
     },
     externals: {
-        react: 'React'
+        react: {
+            root: 'React',
+            commonjs: 'react',
+            commonjs2: 'react',
+            amd: 'react'
+        }
     },
     plugins: [
         new webpack.DefinePlugin({
