@@ -12,7 +12,8 @@ var PackLayout = React.createClass({
         columnWidth: PropTypes.number,
         itemMargin: PropTypes.number,
         repositionOnResize: PropTypes.bool,
-        resizeThrottleTimeout: PropTypes.number
+        resizeThrottleTimeout: PropTypes.number,
+        verticalOpticalTolerance: PropTypes.number
     },
 
     getDefaultProps: function() {
@@ -20,7 +21,8 @@ var PackLayout = React.createClass({
             tag: 'ul',
             itemMargin: 10,
             repositionOnResize: true,
-            resizeThrottleTimeout: 250
+            resizeThrottleTimeout: 250,
+            verticalOpticalTolerance: 0
         };
     },
 
@@ -46,7 +48,7 @@ var PackLayout = React.createClass({
         for (var i = 0; i < children.length; i++) {
             var min = +Infinity, minIndex = 0;
             for (var c = 0; c < columns.length; c++) {
-                if (columns[c] < min) {
+                if (columns[c] < min - this.props.verticalOpticalTolerance) {
                     min = columns[c];
                     minIndex = c;
                 }
