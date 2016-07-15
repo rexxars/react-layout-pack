@@ -13,7 +13,8 @@ var PackLayout = React.createClass({
         itemMargin: PropTypes.number,
         repositionOnResize: PropTypes.bool,
         resizeThrottleTimeout: PropTypes.number,
-        verticalOpticalTolerance: PropTypes.number
+        verticalOpticalTolerance: PropTypes.number,
+        onReposition: React.PropTypes.func
     },
 
     getDefaultProps: function() {
@@ -59,6 +60,9 @@ var PackLayout = React.createClass({
             children[i].style.top = min + 'px';
 
             columns[minIndex] = min + children[i].offsetHeight + margin;
+        }
+        if (typeof this.props.onReposition === 'function') {
+            this.props.onReposition();
         }
     },
 
