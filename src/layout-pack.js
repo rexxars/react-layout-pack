@@ -88,6 +88,14 @@ var PackLayout = React.createClass({
     },
 
     componentDidUpdate: function() {
+
+        // When image finish loading run reposition
+        this.image = this.el.querySelectorAll('img');
+        for (var i = this.image.length - 1; i >= 0; i--) {
+          this.image[i].onload = this.reposition;
+        }
+
+
         this.reposition();
     },
 
