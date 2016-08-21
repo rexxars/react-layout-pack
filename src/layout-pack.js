@@ -61,25 +61,22 @@ var PackLayout = React.createClass({
 
             columns[minIndex] = min + children[i].offsetHeight + margin;
 
-            var max = 0, maxIndex = 0;
-            for (var c = 0; c < columns.length; c++) {
-                if (columns[c] > max) {
-                    max = columns[c];
-                    maxIndex = c;
+            var max = 0;
+            for (var d = 0; d < columns.length; d++) {
+                if (columns[d] > max) {
+                    max = columns[d];
                 }
             }
-
         }
 
         this.el = this.refs.container;
         // Old versions of React doesn't return the raw DOM node
         if (!(this.el instanceof window.Node)) {
-          this.el = this.el.getDOMNode();
+            this.el = this.el.getDOMNode();
         }
 
         var calcTotalHeight = max + 'px';
         this.el.style.height = calcTotalHeight;
-
 
         if (typeof this.props.onReposition === 'function') {
             this.props.onReposition();
@@ -108,13 +105,11 @@ var PackLayout = React.createClass({
     },
 
     componentDidUpdate: function() {
-
         // When image finish loading run reposition
         this.image = this.el.querySelectorAll('img');
         for (var i = this.image.length - 1; i >= 0; i--) {
-          this.image[i].onload = this.reposition;
+            this.image[i].onload = this.reposition;
         }
-
 
         this.reposition();
     },
