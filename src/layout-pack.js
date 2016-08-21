@@ -12,7 +12,9 @@ var PackLayout = React.createClass({
         columnWidth: PropTypes.number,
         itemMargin: PropTypes.number,
         repositionOnResize: PropTypes.bool,
-        resizeThrottleTimeout: PropTypes.number
+        resizeThrottleTimeout: PropTypes.number,
+        verticalOpticalTolerance: PropTypes.number,
+        onReposition: React.PropTypes.func
     },
 
     getDefaultProps: function() {
@@ -20,7 +22,8 @@ var PackLayout = React.createClass({
             tag: 'ul',
             itemMargin: 10,
             repositionOnResize: true,
-            resizeThrottleTimeout: 250
+            resizeThrottleTimeout: 250,
+            verticalOpticalTolerance: 0
         };
     },
 
@@ -46,7 +49,7 @@ var PackLayout = React.createClass({
         for (var i = 0; i < children.length; i++) {
             var min = +Infinity, minIndex = 0;
             for (var c = 0; c < columns.length; c++) {
-                if (columns[c] < min) {
+                if (columns[c] < min - this.props.verticalOpticalTolerance) {
                     min = columns[c];
                     minIndex = c;
                 }
@@ -57,6 +60,26 @@ var PackLayout = React.createClass({
             children[i].style.top = min + 'px';
 
             columns[minIndex] = min + children[i].offsetHeight + margin;
+
+            var max = 0;
+            for (var d = 0; d < columns.length; d++) {
+                if (columns[d] > max) {
+                    max = columns[d];
+                }
+            }
+        }
+
+        this.el = this.refs.container;
+        // Old versions of React doesn't return the raw DOM node
+        if (!(this.el instanceof window.Node)) {
+            this.el = this.el.getDOMNode();
+        }
+
+        var calcTotalHeight = max + 'px';
+        this.el.style.height = calcTotalHeight;
+
+        if (typeof this.props.onReposition === 'function') {
+            this.props.onReposition();
         }
     },
 
@@ -82,6 +105,12 @@ var PackLayout = React.createClass({
     },
 
     componentDidUpdate: function() {
+        // When image finish loading run reposition
+        this.image = this.el.querySelectorAll('img');
+        for (var i = this.image.length - 1; i >= 0; i--) {
+            this.image[i].onload = this.reposition;
+        }
+
         this.reposition();
     },
 
