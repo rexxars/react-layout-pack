@@ -55,12 +55,31 @@ var PackLayout = React.createClass({
                 }
             }
 
+            var max = 0, maxIndex = 0;
+            for (var c = 0; c < columns.length; c++) {
+                if (columns[c] > max) {
+                    max = columns[c];
+                    maxIndex = c;
+                }
+            }
+
             var leftPos = margin + (minIndex * (colWidth + margin * 2));
             children[i].style.left = leftPos + 'px';
             children[i].style.top = min + 'px';
 
             columns[minIndex] = min + children[i].offsetHeight + margin;
         }
+
+        this.el = this.refs.container;
+        // Old versions of React doesn't return the raw DOM node
+        if (!(this.el instanceof window.Node)) {
+          this.el = this.el.getDOMNode();
+        }
+
+        var calcTotalHeight = columns[maxIndex] + 'px';
+        this.el.style.height = calcTotalHeight;
+
+
         if (typeof this.props.onReposition === 'function') {
             this.props.onReposition();
         }
