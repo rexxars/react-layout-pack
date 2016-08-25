@@ -12,7 +12,8 @@ var PackLayout = React.createClass({
         columnWidth: PropTypes.number,
         itemMargin: PropTypes.number,
         repositionOnResize: PropTypes.bool,
-        resizeThrottleTimeout: PropTypes.number
+        resizeThrottleTimeout: PropTypes.number,
+        setHeight: PropTypes.bool
     },
 
     getDefaultProps: function() {
@@ -20,8 +21,13 @@ var PackLayout = React.createClass({
             tag: 'ul',
             itemMargin: 10,
             repositionOnResize: true,
-            resizeThrottleTimeout: 250
+            resizeThrottleTimeout: 250,
+            setHeight: false
         };
+    },
+
+    getInitialState: function() {
+        return {};
     },
 
     getColumnArray: function() {
@@ -57,6 +63,14 @@ var PackLayout = React.createClass({
             children[i].style.top = min + 'px';
 
             columns[minIndex] = min + children[i].offsetHeight + margin;
+        }
+
+        if (this.props.setHeight) {
+            var maxHeight = Math.max.apply(Math, columns);
+            if (maxHeight !== this.state.height)
+            {
+                this.setState({height: maxHeight});
+            }
         }
     },
 
@@ -97,6 +111,10 @@ var PackLayout = React.createClass({
             ref: 'container',
             className: this.props.className
         };
+
+        if (this.props.setHeight) {
+            props.style = { height: this.state.height + "px" };
+        }
 
         return root(props, this.props.children);
     }
