@@ -75,7 +75,9 @@ var PackLayout = React.createClass({
     },
 
     getColumnWidth: function() {
-        return this.props.columnWidth || Math.floor(this.el.childNodes[0].getBoundingClientRect().width);
+        return this.props.columnWidth || this.el.childNodes.length !== 0 ?
+          Math.floor(this.el.childNodes[0].getBoundingClientRect().width) :
+          0;
     },
 
     componentDidMount: function() {
