@@ -67,8 +67,7 @@ var PackLayout = React.createClass({
 
         if (this.props.setHeight) {
             var maxHeight = Math.max.apply(Math, columns);
-            if (maxHeight !== this.state.height)
-            {
+            if (maxHeight !== this.state.height) {
                 this.setState({height: maxHeight});
             }
         }
@@ -115,7 +114,7 @@ var PackLayout = React.createClass({
         };
 
         if (this.props.setHeight) {
-            props.style = { height: this.state.height + "px" };
+            props.style = { height: this.state.height + 'px' };
         }
 
         return root(props, this.props.children);

@@ -1,6 +1,6 @@
 'use strict';
 
-var require = typeof require === 'undefined' ? function() {} : require;
+var require = typeof require === 'undefined' ? function() {} : require; // eslint-disable-line
 
 var React = window.React || require('react');
 var ReactDom = window.ReactDOM || require('react-dom') || React;

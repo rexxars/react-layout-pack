@@ -9,7 +9,7 @@
     "build": "npm run build:umd && npm run build:prod",
     "build:umd": "webpack src/layout-pack.js umd/layout-pack.js",
     "build:prod": "NODE_ENV=production webpack -p src/layout-pack.js umd/layout-pack.min.js",
-    "prepublish": "npm run build && npm run test"
+    "prepublish": "in-publish && npm run build && npm run test || not-in-publish"
   },
   "repository": {
     "type": "git",
@@ -33,8 +33,11 @@
     "react": ">= 0.12.0"
   },
   "devDependencies": {
-    "eslint": "^1.9.0",
-    "eslint-config-vaffel": "^3.0.0",
+    "eslint": "^3.13.1",
+    "eslint-config-vaffel": "^5.0.0",
     "webpack": "^1.12.6"
+  },
+  "dependencies": {
+    "in-publish": "^2.0.0"
   }
 }
