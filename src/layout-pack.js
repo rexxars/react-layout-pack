@@ -74,9 +74,13 @@ var PackLayout = React.createClass({
     },
 
     getColumnWidth: function() {
-        return this.props.columnWidth || this.el.childNodes.length !== 0 ?
-          Math.floor(this.el.childNodes[0].getBoundingClientRect().width) :
-          0;
+        if (this.props.columnWidth) {
+            return this.props.columnWidth;
+        }
+
+        return this.el.childNodes.length > 0 ?
+            Math.floor(this.el.childNodes[0].getBoundingClientRect().width) :
+            0;
     },
 
     componentDidMount: function() {
@@ -113,7 +117,7 @@ var PackLayout = React.createClass({
             className: this.props.className
         };
 
-        if (this.props.setHeight) {
+        if (this.state.height) {
             props.style = { height: this.state.height + 'px' };
         }
 

@@ -34,7 +34,8 @@ function getLayout() {
     return packLayout(
         {
             className: 'pack-layout',
-            itemMargin: isWindowLarge() ? 10 : 5
+            itemMargin: isWindowLarge() ? 10 : 5,
+            setHeight: true
         },
 
         imgLi('beer.jpg', 255),
